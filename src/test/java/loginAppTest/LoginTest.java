@@ -18,15 +18,19 @@ public class LoginTest extends TestBase {
 
     private LoginPage loginPage;
 
+
     @BeforeMethod
-    public void spinUpAndroidDriver() {
+    public void retriveUpAndroidDriver() {
+
         try {
             driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), this.capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(this.driver);
+
     }
 
     @Test(description = "Verify that a user can login to the application with valid credentials")
